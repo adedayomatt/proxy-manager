@@ -1,0 +1,34 @@
+extends ../frame
+
+block content
+    section(class="w-full")
+        div(class="m-3 md:m-5")
+            div(class="flex flex-wrap justify-center")
+                div(class="w-full md:w-1/4")
+                    h4(class="text-xs text-gray-500") Tenant
+                    h2(class="text-2xl font-bold")=tenant.name
+                    a(href=tenant.base_url)=tenant.base_url
+                    p(class="text-gray-600")=tenant.description
+                    h2(class="text-md text-gray-600") Endpoints - #{tenant.endpoints.length}
+                    div(class="flex justify-between md:block my-5 space-x-1 md:space-y-2")
+                        a(href="/tenant/#{tenant.id}/edit", class="md:block px-3 py-2 rounded-md bg-white hover:shadow-md router-link") Update Tenant
+                        a(href="/doc/#{tenant.id}", class="md:block px-3 py-2 rounded-md bg-white hover:shadow-md router-link") View in Swagger &#8594
+                div(class="w-full md:w-3/4")
+                    if(tenant.endpoints.length)
+                        div(class="shadow-lg bg-white rounded-lg mt-5 md:mx-2")
+                            ul(class="p-0 divide-y")
+                                - for (let endpoint of tenant.endpoints) {
+                                li(class="flex flex-wrap justify-between items-center p-2 hover:bg-gray-100 router-link")
+                                    div(class="space-y-2")
+                                        div(class="flex items-center space-x-2")
+                                            h4(class="font-bold") #{endpoint.name}
+                                            p(class="text-xs text-gray-500") /#{tenant.slug}/#{endpoint.slug}
+                                        p(class="text-gray-500 text-xs text-ellipsis ")
+                                            span(class="px-4 py-1 bg-gray-500 text-white rounded-md mr-2") #{endpoint.verb}
+                                            span #{tenant.base_url}/#{endpoint.route}
+                                        p(class="text-xs") #{endpoint.description}
+                                    div(class="w-full md:w-auto my-2 text-right")
+                                        a(href="/endpoint/#{endpoint.id}/edit", class="px-3 py-2 rounded-md bg-white hover:shadow-md router-link") Update
+                                - }
+                    else
+                        div(class="p-5 text-center text-gray-500") No endpoint yet

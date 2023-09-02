@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  div(class="flex flex-nowrap")
+    div(class="main z-10 fixed w-4/5 md:w-1/5 bg-white transition-all")
+      main(class="space-y-5 mt-20 mb-10")
+        section(class="p-3")
+          div(class="flex flex-nowrap overflow-x-auto space-x-2 items-center")
+            h4(class="text-gray-500") Create
+            a(href="/tenant/create" class="router-link bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline") Tenant
+            a(href="/endpoint/create" class="router-link bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline") Endpoint
+
+        section(class="list-section h-screen overflow-y-auto")
+          ul(class="p-0 divide-y")
+            li
+              a(href="/doc/all", class="block px-3 py-2 hover:bg-gray-100 router-link") All tenants
+            - for (let tenant of tenants) {
+              li
+                a(href=`/doc/${tenant.id}`, class="flex justify-between px-3 py-2 hover:bg-gray-100 router-link")
+                  span #{tenant.name}
+                  span(class="flex items-center justify-center w-5 h-5 rounded-full bg-gray-700 text-white") #{tenant.endpoints.length}
+              - }
+    div(class="right-side fixed right-0 w-full md:w-4/5 route-container transition-all")
+      iframe(id="route-frame", class="h-screen w-full border-0", src="/doc/all")

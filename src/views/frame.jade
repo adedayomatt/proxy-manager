@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title=title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src = "https://cdn.tailwindcss.com")
+  body(class="bg-gray-100")
+    main(class="flex h-screen justify-center pt-16")
+      block content
+      script(type="text/javascript").
+        document.querySelectorAll(".router-link")
+          .forEach(link => {
+            const href = link.getAttribute("href");
+            if(href) {
+              link.addEventListener("click", e => {
+              window.top.postMessage({ route: "/", frame: href }, "*")
+              })
+            }
+          })

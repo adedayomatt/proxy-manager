@@ -1,0 +1,67 @@
+form(action="", method="POST")
+    div(class="flex flex-wrap space-y-5")
+        div(class="w-full md:w-1/3 space-y-5 md:p-5")
+            div
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="tenant-id") Tenant
+                select(name="tenant_id", id="tenant-id", class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required )
+                    -for (tenant of tenants) {
+                        option(value=tenant.id, selected=endpoint && tenant.id == endpoint.tenant_id) #{tenant.name}
+                    -}
+
+            div
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="tenant-id") Type
+                select(name="type", id="type", class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required)
+                    -for (type of ["REST", "GraphQl", "SOAP"]) {
+                        option(value=type, selected=endpoint && type == endpoint.type) #{type}
+                    -}
+
+            div
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="verb") Verb
+                select(name="verb", id="verb", class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required)
+                    -for (verb of ["GET", "POST", "PUT", "PATCH", "DELETE"]) {
+                        option(value=verb, selected=endpoint && verb == endpoint.verb) #{verb}
+                    -}
+
+            div
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="name") Name
+                input(type="text", name="name", value=endpoint ? endpoint.name : "", placeholder="Endpoint Name", id="name", class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required)
+
+            div
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="slug") Slug
+                input(type="text", name="slug", value=endpoint ? endpoint.slug : "", placeholder="Endpoint slug", id="slug", class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required)
+
+        div(class="w-full md:w-2/3 space-y-5 md:p-5")
+            div
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="route") Route
+                input(type="text", name="route", value=endpoint ? endpoint.route : "", placeholder="Endpoint route", id="route" class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required)
+
+            div
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="description") Description
+                textarea(name="description", placeholder="Endpoint description", id="description", class="h-20 resize-none shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline").
+                    #{endpoint ? endpoint.description : ""}
+            div
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="parameters") Parameters (JSON)
+                textarea(name="params", placeholder="Endpoint parameters", id="parameters", class="h-40 resize-none shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline").
+                    #{endpoint ? endpoint.params : ""}
+
+            div
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="parameters") Query (JSON)
+                textarea(name="query", placeholder="Endpoint queries", id="parameters", class="h-40 resize-none shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline").
+                    #{endpoint ? endpoint.query : ""}
+
+            div
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="headers") Headers (JSON)
+                textarea(name="headers", placeholder="Endpoint headers", id="headers", class="h-40 resize-none shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline").
+                    #{endpoint ? endpoint.headers : ""}
+            div
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="payload") Payload (JSON)
+                textarea(name="payload", placeholder="Endpoint payload", id="payload", class="h-40 resize-none shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline").
+                    #{endpoint ? endpoint.payload : ""}
+            div
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="response") Response (JSON)
+                textarea(name="response", placeholder="Endpoint response", id="response", class="h-40 resize-none shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline").
+                    #{endpoint ? endpoint.response : ""}
+
+    div
+        button(class="block w-full  bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", type="submit").
+            #{endpoint ? "Update" : "Create"} Endpoint

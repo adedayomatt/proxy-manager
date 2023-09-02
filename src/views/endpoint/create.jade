@@ -1,0 +1,9 @@
+extends ../frame
+
+block content
+    section(class="w-full")
+        div(class="md:m-5")
+            h2(class="text-lg font-bold m-5") Create Endpoint
+            div(class="shadow-lg bg-white rounded-lg p-5")
+                -var endpoint = null;
+                include ./components/form

@@ -1,0 +1,7 @@
+doctype html
+html
+    head
+    body
+        h4 Routing to #{route}
+        script(type="text/javascript").
+            window.top.postMessage({ route: "#{route}", frame:"#{frame}" }, "*");

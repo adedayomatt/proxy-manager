@@ -1,0 +1,76 @@
+doctype html
+html
+  head
+    title=title
+    meta(name="viewport" content="initial-scale=1, width=device-width")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type="text/javascript").
+      window.onmessage = function (e) {
+        if(e.origin === location.origin) {
+            const { route, frame } = e.data;
+            if(route) window.location.pathname = route;
+            if (frame) loadFrame(frame)
+        }
+      };
+    script(src = "https://cdn.tailwindcss.com")
+  body
+    nav(class="fixed z-20 flex items-center justify-between top-0 left-0 right-0 bg-gray-200 py-2")
+      div(class="flex items-center")
+        button(id="side-toggle", class="hover:opacity-100 text-3xl mr-5 ml-3 transition-all") +
+        div(class="text-center")
+          a(href="/")
+            h1(class="text-2xl font-bold text-gray-700") Gateway
+            p(class="text-gray-400 text-xs") Manager
+      a(href="/doc/example", class="router-link mr-3") Swagger Example
+
+    block content
+
+    script(type="text/javascript").
+      const sideToggle = document.querySelector("#side-toggle");
+      const side = document.querySelector(".main");
+      const rightSide = document.querySelector(".right-side");
+
+      function showSide() {
+        side.classList.remove("-translate-x-full");
+        rightSide.classList.add("md:w-4/5");
+        sideToggle.classList.add("rotate-45")
+      }
+
+      function hideSide() {
+        side.classList.add("-translate-x-full");
+        rightSide.classList.remove("md:w-4/5");
+        sideToggle.classList.remove("rotate-45")
+      }
+
+      function loadFrame(src) {
+        window.location.hash = "#" + src;
+        const routeFrame = document.querySelector("#route-frame");
+        routeFrame.setAttribute("src", src);
+        if(screen.width < 768) hideSide();
+      }
+
+      if (window.location.hash.startsWith("#")) {
+        loadFrame(window.location.hash.slice(1))
+      }
+
+      document.querySelectorAll(".router-link")
+      .forEach(link => {
+        const href = link.getAttribute("href");
+        if (href) {
+          link.addEventListener("click", e => {
+            e.preventDefault();
+            loadFrame(href)
+          })
+        }
+      })
+
+      sideToggle.addEventListener("click", (e) => {
+        if (side.classList.contains("-translate-x-full")) {
+          showSide()
+        } else {
+          hideSide()
+        }
+      })
+
+      if(screen.width < 768) hideSide()
+      else showSide()
