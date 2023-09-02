@@ -6,7 +6,7 @@ const models = require("./models");
 const routes = require("./routes/index")
 const path = require("path");
 
-class GatewayManager {
+class ProxyManager {
 
     config = {}
     views = []
@@ -63,4 +63,4 @@ class GatewayManager {
     }
 }
 
-module.exports = GatewayManager;
+module.exports = ProxyManager;

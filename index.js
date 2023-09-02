@@ -1,3 +1,3 @@
-const GatewayManager = require("./src/Manager")
+const ProxyManager = require("./src/Manager")
 
-module.exports = GatewayManager
+module.exports = ProxyManager
