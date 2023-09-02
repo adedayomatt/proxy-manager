@@ -10,7 +10,7 @@ class ProxyManager {
 
     config = {}
     views = []
-    constructor(config) {
+    constructor(config = {}) {
         this.config = config;
         this.models = models;
     }
