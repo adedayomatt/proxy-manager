@@ -10,14 +10,22 @@ class ProxyManager {
 
     config = {}
     views = []
-    constructor(config = {}) {
+    constructor(app, config = {}) {
         this.config = config;
-        this.models = models;
+        this.setModels(models);
+        this.setApp(app);
+    }
+    getModels() {
+        return this.models;
+    }
+    setModels(models) {
+        this.models = models
     }
     syncModels(options = {}) {
-        return this.models.sequelize.sync(options)
+        return this.getModels().sequelize.sync(options)
     }
     setApp(app) {
+        if(!app) return this;
         this.app = app;
         this.app.use(express.static(path.join(__dirname, 'public')));
         return this.addViewDirectories([path.join(__dirname, 'views')])
