@@ -58,7 +58,7 @@ class ProxyManager {
         } , swaggerUi.serve, swaggerUi.setup());
         return this;
     }
-    getManagementRoutes() {
+    getManagementRouter() {
         return routes;
     }
 }
