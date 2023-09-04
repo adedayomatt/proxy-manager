@@ -1,3 +1,5 @@
 const ProxyManager = require("./src/Manager")
 
-module.exports = ProxyManager
+module.exports = {
+    ProxyManager
+}
