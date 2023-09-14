@@ -16,7 +16,7 @@ block content
               a(href="/doc/all", class="block px-3 py-2 hover:bg-gray-100 router-link") All tenants
             - for (let tenant of tenants) {
               li
-                a(href=`/doc/${tenant.id}`, class="flex justify-between px-3 py-2 hover:bg-gray-100 router-link")
+                a(href=`/tenant/${tenant.id}`, class="flex justify-between px-3 py-2 hover:bg-gray-100 router-link")
                   span #{tenant.name}
                   span(class="flex items-center justify-center w-5 h-5 rounded-full bg-gray-700 text-white") #{tenant.endpoints.length}
               - }
