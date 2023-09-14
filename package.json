@@ -1,6 +1,6 @@
 {
   "name": "@adedayomatthews/proxy-manager",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Adedayo Matthews",
   "scripts": {
     "sequelize-model": "node src/sync-model.js",
