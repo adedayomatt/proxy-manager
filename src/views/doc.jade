@@ -10,10 +10,9 @@ html
     div(id="swagger-ui")
   script(src="https://unpkg.com/swagger-ui-dist@4.5.0/swagger-ui-bundle.js", crossorigin)
   script(type="text/javascript").
-    const spec = {spec};
     window.onload = function() {
         window.ui = SwaggerUIBundle({
-            spec,
+            spec: !{JSON.stringify(setupDoc)},
             dom_id: '#swagger-ui'
         });
     }

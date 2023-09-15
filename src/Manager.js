@@ -59,7 +59,7 @@ class ProxyManager {
                 });
             }
             if(setupDoc) {
-                return res.render('doc', { spec: setupDoc });
+                return res.render('doc', { setupDoc });
             }
             next(createError(404))
         });
