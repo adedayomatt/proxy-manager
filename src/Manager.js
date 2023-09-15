@@ -1,6 +1,5 @@
 const express = require('express');
 const createError = require("http-errors");
-const swaggerUi = require('swagger-ui-express');
 const { exampleSetup, getTenantsSetup } = require("@adedayomatthews/swagger-generator");
 const models = require("./models");
 const routes = require("./routes/index")
