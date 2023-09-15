@@ -59,11 +59,10 @@ class ProxyManager {
                 });
             }
             if(setupDoc) {
-                req.swaggerDoc = setupDoc;
-                return next();
+                return res.render('doc', { spec: setupDoc });
             }
             next(createError(404))
-        } , swaggerUi.serve, swaggerUi.setup());
+        });
         return this;
     }
     getManagementRouter() {
