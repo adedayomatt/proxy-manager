@@ -3,16 +3,18 @@ html
   head
     title=title
     script(src = "https://cdn.tailwindcss.com")
+    script(src = "https://code.jquery.com/jquery-3.7.1.min.js", integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=", crossorigin="anonymous")
   body(class="bg-gray-100")
     main(class="flex h-screen justify-center pt-16")
       block content
       script(type="text/javascript").
         document.querySelectorAll(".router-link")
-          .forEach(link => {
-            const href = link.getAttribute("href");
-            if(href) {
-              link.addEventListener("click", e => {
-              window.top.postMessage({ route: "/", frame: href }, "*")
-              })
-            }
-          })
+                .forEach(link => {
+                  const href = link.getAttribute("href");
+                  if(href) {
+                    link.addEventListener("click", e => {
+                      window.top.postMessage({ route: "/", frame: href }, "*")
+                    })
+                  }
+                })
+      script(src = "/js/json-validator.js")
