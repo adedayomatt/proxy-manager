@@ -65,7 +65,7 @@ renderJsonPreview = function(preview, input, syncInput, submitBtn) {
             if(syncInput) {
                 preview.on('input', 'input.generated-input', function(e) {
                     json = setObjectItem(json, $(this).attr("name"), $(this).val());
-                    input.val(JSON.stringify(json))
+                    input.val(JSON.stringify(json[input.attr('name')]))
                 })
             }
         } else {
