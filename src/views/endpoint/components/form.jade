@@ -7,7 +7,6 @@ form(action="", method="POST", class="has-json-validation")
                     -for (tenant of tenants) {
                         option(value=tenant.id, selected=endpoint && tenant.id == endpoint.tenant_id) #{tenant.name}
                     -}
-
             div
                 label(class="block text-gray-700 text-sm font-bold mb-2", for="tenant-id") Type
                 select(name="type", id="type", class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required)
@@ -31,6 +30,10 @@ form(action="", method="POST", class="has-json-validation")
                 input(type="text", name="slug", value=endpoint ? endpoint.slug : "", placeholder="Endpoint slug", id="slug", class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required)
 
         div(class="w-full md:w-2/3 space-y-5 md:p-5")
+            div(class="validate-json" sync-input="true", sample='{"endpoint":"","is_async":true,"can_pardon":false,"assignments":{}}')
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="pre_request") Pre Request Hook
+                textarea(name="before_execute", placeholder="Pre request hook configuration", id="pre_request", class="h-40 resize-none shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline").
+                    #{endpoint ? endpoint.before_execute : ""}
             div
                 label(class="block text-gray-700 text-sm font-bold mb-2", for="route") Route
                 input(type="text", name="route", value=endpoint ? endpoint.route : "", placeholder="Endpoint route", id="route" class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required)
@@ -63,6 +66,11 @@ form(action="", method="POST", class="has-json-validation")
                 label(class="block text-gray-700 text-sm font-bold mb-2", for="response") Response (JSON)
                 textarea(name="response", placeholder="Endpoint response", id="response", class="h-40 resize-none shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline").
                     #{endpoint ? endpoint.response : ""}
+
+            div(class="validate-json" sync-input="true", sample='{"endpoint":"","is_async":true,"can_pardon":false,"assignments":{}}')
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="post_request") Post Request Hook
+                textarea(name="after_execute", placeholder="Post request hook configuration", id="post_request", class="h-40 resize-none shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline").
+                    #{endpoint ? endpoint.after_execute : ""}
 
     div
         button(class="block w-full  bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", id="submit-endpoint" type="submit").

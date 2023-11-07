@@ -21,7 +21,9 @@ block content
                                 li(class="flex flex-wrap justify-between items-center p-2 hover:bg-gray-100 router-link")
                                     div(class="space-y-2")
                                         div(class="flex items-center space-x-2")
-                                            h4(class="font-bold") #{endpoint.name}
+                                            h4(class="font-bold")
+                                                span(class="text-gray-500 mr-2") ##{endpoint.id}
+                                                span #{endpoint.name}
                                             p(class="text-xs text-gray-500") /#{tenant.slug}/#{endpoint.slug}
                                         p(class="text-gray-500 text-xs text-ellipsis ")
                                             span(class="px-4 py-1 bg-gray-500 text-white rounded-md mr-2") #{endpoint.verb}

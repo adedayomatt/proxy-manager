@@ -13,7 +13,11 @@ module.exports = {
     },
 
     storeEndpoint: (req, res) => {
-        Endpoint.create({ tenant_id, name, slug, route, verb, description, type, params, query, headers, payload } = req.body)
+        Endpoint.create({
+            tenant_id, name, slug, route, verb,
+            description, type, query, headers,
+            payload, response, before_execute, after_execute
+        } = req.body)
         .then(endpoint => {
             res.render('route', { route: "/", frame: `/tenant/${req.body.tenant_id}`});
         })
@@ -35,7 +39,12 @@ module.exports = {
 
     updateEndpoint: (req, res) => {
         const { id } = req.params;
-        Endpoint.update({ tenant_id, name, slug, route, verb, description, type, params, query, headers, payload, response } = req.body, {
+
+        Endpoint.update({
+            tenant_id, name, slug, route, verb,
+            description, type, query, headers,
+            payload, response, before_execute, after_execute
+        } = req.body, {
             where: { id }
         })
         .then(() => {
