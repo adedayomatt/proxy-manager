@@ -1,6 +1,6 @@
 {
   "name": "@adedayomatthews/proxy-manager",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "author": "Adedayo Matthews",
   "scripts": {
     "sandbox": "nodemon ./sandbox/bin/www",
