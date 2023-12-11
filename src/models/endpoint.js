@@ -66,6 +66,9 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: "Terminate",
             allowNull: false
         },
+        response_check: {
+            type: DataTypes.TEXT,
+        },
         params: {
             type: DataTypes.TEXT
         },

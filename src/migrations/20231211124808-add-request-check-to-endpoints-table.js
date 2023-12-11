@@ -9,8 +9,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-
-    await queryInterface.addColumn('endpoints', 'onfail', {type: Sequelize.ENUM, values: ["Terminate", "Continue", "Retry"], allowNull: false, after: "response"});
+    await queryInterface.addColumn('endpoints', 'response_check', {type: Sequelize.TEXT, allowNull: true, after: "onfail"});
   },
 
   async down (queryInterface, Sequelize) {
@@ -20,6 +19,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.removeColumn('endpoints', 'onfail');
+    await queryInterface.removeColumn('endpoints', 'response_check');
   }
 };
