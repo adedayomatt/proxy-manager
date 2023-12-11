@@ -50,6 +50,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        request_method: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         type: {
             type: DataTypes.ENUM,
             values: [ REST, SOAP, GRAPHQL ],

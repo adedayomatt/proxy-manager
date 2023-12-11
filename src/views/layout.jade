@@ -14,12 +14,19 @@ html
     script(src = "https://cdn.tailwindcss.com")
   body
     nav(class="fixed z-20 flex items-center justify-between top-0 left-0 right-0 bg-gray-200 py-2")
-      div(class="flex items-center")
-        button(id="side-toggle", class="hover:opacity-100 text-3xl mr-5 ml-3 transition-all") +
-        div(class="text-center")
-          a(href="/")
-            h1(class="text-2xl font-bold text-gray-700") Gateway
-            p(class="text-gray-400 text-xs") Manager
+      div(class="flex gap-x-5")
+        div(class="flex items-center")
+          button(id="side-toggle", class="hover:opacity-100 text-3xl mr-5 ml-3 transition-all") +
+          div(class="text-center")
+            a(href="/")
+              h1(class="text-2xl font-bold text-gray-700") Gateway
+              p(class="text-gray-400 text-xs") Manager
+        form(class="flex-grow" action="log")
+          div(class="relative")
+            div(class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none")
+              svg(class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20")
+                path(stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z")
+            input(type="search" name="id" id="default-search" class="block w-full p-3 ps-10 text-sm text-gray-900 border  rounded-lg" placeholder="Enter Request ID" value="#{id || ''}" required)
       a(href="/doc/example", class="router-link mr-3") Swagger Example
 
     block content

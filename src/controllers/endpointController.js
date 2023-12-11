@@ -14,7 +14,7 @@ module.exports = {
 
     storeEndpoint: (req, res) => {
         Endpoint.create({
-            tenant_id, name, slug, route, verb,
+            tenant_id, name, slug, route, verb, request_method,
             description, type, query, headers,
             payload, response, before_execute, after_execute
         } = req.body)
@@ -41,7 +41,7 @@ module.exports = {
         const { id } = req.params;
 
         Endpoint.update({
-            tenant_id, name, slug, route, verb,
+            tenant_id, name, slug, route, verb, request_method,
             description, type, query, headers,
             payload, response, before_execute, after_execute
         } = req.body, {
