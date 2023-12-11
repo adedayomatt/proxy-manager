@@ -22,6 +22,13 @@ form(action="", method="POST", class="has-json-validation")
                     -}
 
             div
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="onfail") On Request Fail
+                select(name="onfail", id="onfail", class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required)
+                    -for (onfail of ["Terminate", "Continue", "Retry"]) {
+                        option(value=onfail, selected=endpoint && onfail === endpoint.onfail) #{onfail}
+                    -}
+
+            div
                 label(class="block text-gray-700 text-sm font-bold mb-2", for="request_method") Outgoing Request Method
                 select(name="request_method", id="request_method", class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required)
                     -for (let method of ["GET", "POST", "PUT", "PATCH", "DELETE"]) {
@@ -69,12 +76,17 @@ form(action="", method="POST", class="has-json-validation")
                 textarea(name="response", placeholder="Endpoint response", id="response", class="h-40 resize-none shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline").
                     #{endpoint ? endpoint.response : ""}
 
-            div(class="validate-json" sync-input="true", sample='{"pre_request":{"endpoint":"","assignments":{}}}')
+            div(class="validate-json" sync-input="true", sample='{"statusCode": 200}')
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="response_check") Endpoint Response Check
+                textarea(name="response_check", placeholder="Post request hook configuration", id="response_check", class="h-40 resize-none shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline").
+                    #{endpoint ? endpoint.response_check : ""}
+
+            div(class="validate-json" sync-input="true", sample='{"pre_request":{"endpoint":"","assignments":{},"onfail":"","checks":{"statusCode": 200}}}')
                 label(class="block text-gray-700 text-sm font-bold mb-2", for="pre_request") Pre Request Hook
                 textarea(name="before_execute", placeholder="Pre request hook configuration", id="pre_request", class="h-40 resize-none shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline").
                     #{endpoint ? endpoint.before_execute : ""}
 
-            div(class="validate-json" sync-input="true", sample='{"post_request":{"endpoint":"","assignments":{}}}')
+            div(class="validate-json" sync-input="true", sample='{"post_request":{"endpoint":"","assignments":{},"onfail":"","checks":{"statusCode": 200}}}')
                 label(class="block text-gray-700 text-sm font-bold mb-2", for="post_request") Post Request Hook
                 textarea(name="after_execute", placeholder="Post request hook configuration", id="post_request", class="h-40 resize-none shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline").
                     #{endpoint ? endpoint.after_execute : ""}

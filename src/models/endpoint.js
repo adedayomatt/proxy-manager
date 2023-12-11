@@ -60,6 +60,16 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: REST,
             allowNull: false
         },
+        onfail: {
+            type: DataTypes.ENUM,
+            values: ["Terminate", "Continue", "Retry"],
+            defaultValue: "Terminate",
+            allowNull: false
+        },
+        response_check: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
         params: {
             type: DataTypes.TEXT
         },

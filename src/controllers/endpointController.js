@@ -16,7 +16,7 @@ module.exports = {
         Endpoint.create({
             tenant_id, name, slug, route, verb, request_method,
             description, type, query, headers,
-            payload, response, before_execute, after_execute
+            payload, response, onfail, response_check, before_execute, after_execute
         } = req.body)
         .then(endpoint => {
             res.render('route', { route: "/", frame: `/tenant/${req.body.tenant_id}`});
@@ -43,7 +43,7 @@ module.exports = {
         Endpoint.update({
             tenant_id, name, slug, route, verb, request_method,
             description, type, query, headers,
-            payload, response, before_execute, after_execute
+            payload, response, onfail, response_check, before_execute, after_execute
         } = req.body, {
             where: { id }
         })
