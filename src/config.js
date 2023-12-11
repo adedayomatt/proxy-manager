@@ -1,4 +1,4 @@
-const projectDir = process.env.npm_lifecycle_event === "sandbox"
+const projectDir = ["sandbox"].includes(process.env.NODE_ENV)
     ?  __dirname + '/../sandbox/'
     : __dirname + '/../../../../';
 
