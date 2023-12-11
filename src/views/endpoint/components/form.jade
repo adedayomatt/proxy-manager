@@ -30,9 +30,9 @@ form(action="", method="POST", class="has-json-validation")
 
             div
                 label(class="block text-gray-700 text-sm font-bold mb-2", for="request_method") Outgoing Request Method
-                select(name="request_method", id="request_method", class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required)
-                    -for (let method of ["GET", "POST", "PUT", "PATCH", "DELETE"]) {
-                        option(value=method, selected=endpoint && method === endpoint.request_method) #{method}
+                select(name="request_method", id="request_method", class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline")
+                    -for (let method of ["","GET", "POST", "PUT", "PATCH", "DELETE"]) {
+                        option(value=method, selected=endpoint && method === endpoint.request_method) #{method || 'Same as incoming method'}
                     -}
             div
                 label(class="block text-gray-700 text-sm font-bold mb-2", for="name") Name
