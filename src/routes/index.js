@@ -19,4 +19,7 @@ router.post('/endpoint/create', endpointController.storeEndpoint )
 router.get('/endpoint/:id/edit', endpointController.editEndpoint )
 router.post('/endpoint/:id/edit', endpointController.updateEndpoint )
 
+router.get('/log', indexController.getRequestLog)
+
+
 module.exports = router;
