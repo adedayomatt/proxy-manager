@@ -3,11 +3,12 @@
   "version": "1.0.15",
   "author": "Adedayo Matthews",
   "scripts": {
+    "presandbox": "npm run sequelize-sync",
     "sandbox": "nodemon ./sandbox/bin/www",
     "sequelize-model": "node src/sync-model.js",
     "sequelize-migrate": "npx sequelize-cli db:migrate",
     "sequelize-seed": "npx sequelize-cli db:seed:all",
-    "sequelize-sync": "npm run sequelize-model && npm run sequelize-migrate && npm run sequelize-seed"
+    "sequelize-sync": "npm run sequelize-migrate && npm run sequelize-model && npm run sequelize-seed"
   },
   "dependencies": {
     "@adedayomatthews/swagger-generator": "^1.0.0",
