@@ -4,7 +4,6 @@
 module.exports = {
 
   async up (queryInterface, Sequelize) {
-    // queryInterface.sequelize.query("ALTRE")
     await queryInterface.addColumn(
         'endpoints',
         'request_method',
