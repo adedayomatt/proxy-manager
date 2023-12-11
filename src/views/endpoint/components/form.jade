@@ -17,10 +17,16 @@ form(action="", method="POST", class="has-json-validation")
             div
                 label(class="block text-gray-700 text-sm font-bold mb-2", for="verb") Verb
                 select(name="verb", id="verb", class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required)
-                    -for (verb of ["GET", "POST", "PUT", "PATCH", "DELETE"]) {
-                        option(value=verb, selected=endpoint && verb == endpoint.verb) #{verb}
+                    -for (let verb of ["GET", "POST", "PUT", "PATCH", "DELETE"]) {
+                        option(value=verb, selected=endpoint && verb === endpoint.verb) #{verb}
                     -}
 
+            div
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="request_method") Outgoing Request Method
+                select(name="request_method", id="request_method", class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required)
+                    -for (let method of ["GET", "POST", "PUT", "PATCH", "DELETE"]) {
+                        option(value=method, selected=endpoint && method === endpoint.request_method) #{method}
+                    -}
             div
                 label(class="block text-gray-700 text-sm font-bold mb-2", for="name") Name
                 input(type="text", name="name", value=endpoint ? endpoint.name : "", placeholder="Endpoint Name", id="name", class="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", required)
