@@ -70,7 +70,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.TEXT,
             allowNull: true
         },
-        params: {
+        variables: {
             type: DataTypes.TEXT
         },
         query: {

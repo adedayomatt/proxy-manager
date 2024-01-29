@@ -15,7 +15,7 @@ module.exports = {
     storeEndpoint: (req, res) => {
         Endpoint.create({
             tenant_id, name, slug, route, verb, request_method,
-            description, type, query, headers,
+            description, type, query, headers, variables,
             payload, response, onfail, response_check, before_execute, after_execute
         } = req.body)
         .then(endpoint => {
@@ -42,7 +42,7 @@ module.exports = {
 
         Endpoint.update({
             tenant_id, name, slug, route, verb, request_method,
-            description, type, query, headers,
+            description, type, query, headers, variables,
             payload, response, onfail, response_check, before_execute, after_execute
         } = req.body, {
             where: { id }
