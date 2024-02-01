@@ -24,6 +24,11 @@ form(action="", method="POST")
                 textarea(name="config", placeholder="Tenant config", id="config", class="h-40 resize-none shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline").
                     #{value=tenant ? tenant.config : ""}
 
+            div
+                label(class="block text-gray-700 text-sm font-bold mb-2", for="sensitive-keys") Sensitive Keys (Array)
+                textarea(name="sensitive_keys", placeholder="Tenant sensitive keys", id="sensitive-keys", class="h-40 resize-none shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline").
+                    #{value = tenant ? tenant.sensitive_keys : ""}
+
     div
         button(class="block w-full bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline", type="submit").
             #{tenant ? "Update" : "Create"} Tenant

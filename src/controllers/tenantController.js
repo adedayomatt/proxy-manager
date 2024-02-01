@@ -18,7 +18,7 @@ module.exports = {
     },
 
     storeTenant: (req, res) => {
-        Tenant.create({ name, slug, base_url, registry, config } = req.body)
+        Tenant.create({ name, slug, base_url, registry, config, sensitive_keys } = req.body)
         .then(tenant => {
             res.render('route', { route: "/", frame: `/tenant/${tenant.id}`});
         })
@@ -41,7 +41,7 @@ module.exports = {
 
     updateTenant: (req, res) => {
         const { id } = req.params;
-        Tenant.update({ name, slug, base_url, registry, config } = req.body, {
+        Tenant.update({ name, slug, base_url, registry, config, sensitive_keys } = req.body, {
             where: { id }
         })
         .then(() => {

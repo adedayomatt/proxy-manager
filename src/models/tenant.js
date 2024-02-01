@@ -45,6 +45,9 @@ module.exports = (sequelize, DataTypes) => {
         config: {
             type: DataTypes.TEXT
         },
+        sensitive_keys: {
+            type: DataTypes.TEXT
+        },
         status: {
             type: DataTypes.ENUM,
             values: [ ENABLED, DISABLED ],
