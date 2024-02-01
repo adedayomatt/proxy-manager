@@ -1,6 +1,6 @@
 {
   "name": "@adedayomatthews/proxy-manager",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "author": "Adedayo Matthews",
   "scripts": {
     "presandbox": "npm run sequelize-sync",
